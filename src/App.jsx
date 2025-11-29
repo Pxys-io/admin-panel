@@ -10,6 +10,16 @@ import Payments from './pages/Payments';
 import Reports from './pages/Reports';
 import Admins from './pages/Admins';
 import AuditLogs from './pages/AuditLogs';
+import Products from './pages/Products';
+import Categories from './pages/Categories';
+import Brands from './pages/Brands';
+import PromoCodes from './pages/PromoCodes';
+import Returns from './pages/Returns';
+import Tickets from './pages/Tickets';
+import Transactions from './pages/Transactions';
+import Sellers from './pages/Sellers';
+import Affiliates from './pages/Affiliates';
+import Settings from './pages/Settings';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -39,6 +49,16 @@ function AppRoutes() {
         <Route path="reports" element={<Reports />} />
         <Route path="admins" element={<Admins />} />
         <Route path="audit" element={<AuditLogs />} />
+        <Route path="products" element={<Products />} />
+        <Route path="categories" element={<Categories />} />
+        <Route path="brands" element={<Brands />} />
+        <Route path="promo-codes" element={<PromoCodes />} />
+        <Route path="returns" element={<Returns />} />
+        <Route path="tickets" element={<Tickets />} />
+        <Route path="transactions" element={<Transactions />} />
+        <Route path="sellers" element={<Sellers />} />
+        <Route path="affiliates" element={<Affiliates />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>
   );
