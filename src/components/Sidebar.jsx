@@ -3,20 +3,46 @@ import {
   LayoutDashboard, Users, Store, ShoppingCart, CreditCard,
   BarChart3, Shield, FileText, LogOut, Package, FolderTree,
   Award, Ticket, Image, Gift, RotateCcw, MessageSquare,
-  Truck, MapPin, Receipt, UserCheck, Settings, ChevronDown
+  Truck, MapPin, Receipt, UserCheck, Settings, ChevronDown,
+  Box, DollarSign, User
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 
 export default function Sidebar() {
-  const { user, logout, hasPermission } = useAuth();
+  const { user, logout, hasPermission, isSeller } = useAuth();
   const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const menuSections = [
+  // Seller-specific menu sections
+  const sellerMenuSections = [
+    {
+      title: 'Main',
+      items: [
+        { path: '/seller', label: 'Dashboard', icon: LayoutDashboard, permission: null },
+        { path: '/seller/orders', label: 'Orders', icon: ShoppingCart, permission: null },
+      ]
+    },
+    {
+      title: 'Products',
+      items: [
+        { path: '/seller/products', label: 'My Products', icon: Package, permission: null },
+        { path: '/seller/inventory', label: 'Inventory', icon: Box, permission: null },
+      ]
+    },
+    {
+      title: 'Finance',
+      items: [
+        { path: '/seller/earnings', label: 'Earnings', icon: DollarSign, permission: null },
+      ]
+    },
+  ];
+
+  // Admin menu sections
+  const adminMenuSections = [
     {
       title: 'Main',
       items: [
@@ -78,11 +104,13 @@ export default function Sidebar() {
     },
   ];
 
+  const menuSections = isSeller() ? sellerMenuSections : adminMenuSections;
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h1>Admin Panel</h1>
-        <p className="role-badge">{user?.adminRoleDisplayName || 'Admin'}</p>
+        <h1>{isSeller() ? 'Seller Portal' : 'Admin Panel'}</h1>
+        <p className="role-badge">{user?.adminRoleDisplayName || (isSeller() ? 'Seller' : 'Admin')}</p>
       </div>
 
       <nav className="sidebar-nav">

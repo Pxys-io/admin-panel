@@ -28,7 +28,7 @@ export default function Table({ columns, data, onRowClick, loading }) {
             >
               {columns.map((column) => (
                 <td key={column.key}>
-                  {column.render ? column.render(row) : row[column.key]}
+                  {column.render ? column.render(row[column.key], row) : row[column.key]}
                 </td>
               ))}
             </tr>

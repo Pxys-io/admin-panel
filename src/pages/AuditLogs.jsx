@@ -35,32 +35,32 @@ export default function AuditLogs() {
     {
       key: 'action',
       label: 'Action',
-      render: (row) => <span className="audit-action">{row.action}</span>,
+      render: (val) => <span className="audit-action">{val}</span>,
     },
     {
       key: 'category',
       label: 'Category',
-      render: (row) => <span className={`badge badge-${row.category}`}>{row.category}</span>,
+      render: (val) => <span className={`badge badge-${val}`}>{val}</span>,
     },
     {
       key: 'admin',
       label: 'Admin',
-      render: (row) => row.adminId ? `${row.adminId.userFirstName} ${row.adminId.userLastName}` : 'N/A',
+      render: (_, row) => row.adminId ? `${row.adminId.userFirstName} ${row.adminId.userLastName}` : 'N/A',
     },
     {
       key: 'targetType',
       label: 'Target',
-      render: (row) => row.targetType || 'N/A',
+      render: (val) => val || 'N/A',
     },
     {
       key: 'ipAddress',
       label: 'IP Address',
-      render: (row) => row.ipAddress || 'N/A',
+      render: (val) => val || 'N/A',
     },
     {
       key: 'createdAt',
       label: 'Date',
-      render: (row) => new Date(row.createdAt).toLocaleString(),
+      render: (val) => new Date(val).toLocaleString(),
     },
   ];
 

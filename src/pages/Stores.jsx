@@ -119,26 +119,26 @@ export default function Stores() {
     {
       key: 'location',
       label: 'Location',
-      render: (row) => `${row.city}, ${row.state}`,
+      render: (_, row) => `${row.city}, ${row.state}`,
     },
     {
       key: 'platformFeePercentage',
       label: 'Platform Fee',
-      render: (row) => `${row.platformFeePercentage}%`,
+      render: (val) => `${val}%`,
     },
     {
       key: 'isActive',
       label: 'Status',
-      render: (row) => (
-        <span className={`badge ${row.isActive ? 'badge-success' : 'badge-danger'}`}>
-          {row.isActive ? 'Active' : 'Inactive'}
+      render: (val) => (
+        <span className={`badge ${val ? 'badge-success' : 'badge-danger'}`}>
+          {val ? 'Active' : 'Inactive'}
         </span>
       ),
     },
     {
       key: 'actions',
       label: 'Actions',
-      render: (row) => (
+      render: (_, row) => (
         <div className="table-actions">
           <button onClick={() => openEditModal(row)} className="icon-btn">
             <Edit size={16} />

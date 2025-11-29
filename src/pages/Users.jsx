@@ -91,26 +91,26 @@ export default function Users() {
     {
       key: 'name',
       label: 'Name',
-      render: (row) => `${row.userFirstName} ${row.userLastName}`,
+      render: (_, row) => `${row.userFirstName} ${row.userLastName}`,
     },
     {
       key: 'isAdmin',
       label: 'Admin',
-      render: (row) => (
-        <span className={`badge ${row.isAdmin ? 'badge-success' : 'badge-secondary'}`}>
-          {row.isAdmin ? 'Yes' : 'No'}
+      render: (val) => (
+        <span className={`badge ${val ? 'badge-success' : 'badge-secondary'}`}>
+          {val ? 'Yes' : 'No'}
         </span>
       ),
     },
     {
       key: 'createdAt',
       label: 'Created',
-      render: (row) => new Date(row.createdAt).toLocaleDateString(),
+      render: (val) => new Date(val).toLocaleDateString(),
     },
     {
       key: 'actions',
       label: 'Actions',
-      render: (row) => (
+      render: (_, row) => (
         <div className="table-actions">
           <button onClick={() => openEditModal(row)} className="icon-btn">
             <Edit size={16} />

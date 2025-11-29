@@ -77,32 +77,32 @@ export default function Admins() {
     {
       key: 'name',
       label: 'Name',
-      render: (row) => `${row.userFirstName} ${row.userLastName}`,
+      render: (_, row) => `${row.userFirstName} ${row.userLastName}`,
     },
     { key: 'email', label: 'Email' },
     {
       key: 'adminRole',
       label: 'Role',
-      render: (row) => (
+      render: (val, row) => (
         <span className="badge badge-primary">
-          {row.adminRole || (row.isAdmin ? 'super_admin' : 'N/A')}
+          {val || (row.isAdmin ? 'super_admin' : 'N/A')}
         </span>
       ),
     },
     {
       key: 'assignedStores',
       label: 'Assigned Stores',
-      render: (row) => row.adminAssignedStores?.length || 0,
+      render: (_, row) => row.adminAssignedStores?.length || 0,
     },
     {
       key: 'adminAssignedAt',
       label: 'Assigned Date',
-      render: (row) => row.adminAssignedAt ? new Date(row.adminAssignedAt).toLocaleDateString() : 'N/A',
+      render: (val) => val ? new Date(val).toLocaleDateString() : 'N/A',
     },
     {
       key: 'actions',
       label: 'Actions',
-      render: (row) => (
+      render: (_, row) => (
         <Button
           variant="danger"
           size="sm"

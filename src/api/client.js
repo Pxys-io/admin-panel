@@ -361,6 +361,29 @@ export const settings = {
   switchTheme: (themeId) => apiClient.post('/admin/settings/themes/switch', { themeId }),
 };
 
+// Seller API (for merchants/store managers)
+export const seller = {
+  dashboard: () => apiClient.get('/seller/dashboard'),
+  // Products
+  listProducts: (params) => apiClient.get('/seller/products', { params }),
+  getAvailableProducts: (params) => apiClient.get('/seller/products/available', { params }),
+  addProduct: (data) => apiClient.post('/seller/products', data),
+  updateProduct: (id, data) => apiClient.put(`/seller/products/${id}`, data),
+  removeProduct: (id) => apiClient.delete(`/seller/products/${id}`),
+  // Orders
+  listOrders: (params) => apiClient.get('/seller/orders', { params }),
+  getOrder: (id) => apiClient.get(`/seller/orders/${id}`),
+  updateOrderStatus: (id, status) => apiClient.put(`/seller/orders/${id}/status`, { status }),
+  // Inventory
+  updateInventory: (data) => apiClient.post('/seller/inventory/update', data),
+  getLowStock: (params) => apiClient.get('/seller/inventory/low-stock', { params }),
+  // Earnings
+  listEarnings: (params) => apiClient.get('/seller/earnings', { params }),
+  // Profile
+  getProfile: () => apiClient.get('/seller/profile'),
+  updateProfile: (data) => apiClient.put('/seller/profile', data),
+};
+
 // Cron Jobs
 export const cron = {
   settleCashback: () => apiClient.get('/admin/cron-job/settle-cashback-discount'),

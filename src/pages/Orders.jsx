@@ -57,38 +57,38 @@ export default function Orders() {
     {
       key: 'user',
       label: 'Customer',
-      render: (row) => row.userId ? `${row.userId.userFirstName} ${row.userId.userLastName}` : 'N/A',
+      render: (_, row) => row.userId ? `${row.userId.userFirstName} ${row.userId.userLastName}` : 'N/A',
     },
     {
       key: 'amount',
       label: 'Amount',
-      render: (row) => `$${row.amount?.toLocaleString() || 0}`,
+      render: (val) => `$${val?.toLocaleString() || 0}`,
     },
     {
       key: 'status',
       label: 'Status',
-      render: (row) => (
-        <span className={`badge badge-${row.status}`}>{row.status}</span>
+      render: (val) => (
+        <span className={`badge badge-${val}`}>{val}</span>
       ),
     },
     {
       key: 'approved',
       label: 'Approved',
-      render: (row) => (
-        <span className={`badge ${row.approved ? 'badge-success' : 'badge-warning'}`}>
-          {row.approved ? 'Yes' : 'No'}
+      render: (val) => (
+        <span className={`badge ${val ? 'badge-success' : 'badge-warning'}`}>
+          {val ? 'Yes' : 'No'}
         </span>
       ),
     },
     {
       key: 'createdAt',
       label: 'Date',
-      render: (row) => new Date(row.createdAt).toLocaleDateString(),
+      render: (val) => new Date(val).toLocaleDateString(),
     },
     {
       key: 'actions',
       label: 'Actions',
-      render: (row) => (
+      render: (_, row) => (
         <div className="table-actions">
           {!row.approved && (
             <>

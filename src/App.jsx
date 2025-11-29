@@ -14,12 +14,19 @@ import Products from './pages/Products';
 import Categories from './pages/Categories';
 import Brands from './pages/Brands';
 import PromoCodes from './pages/PromoCodes';
+import Sliders from './pages/Sliders';
 import Returns from './pages/Returns';
 import Tickets from './pages/Tickets';
 import Transactions from './pages/Transactions';
 import Sellers from './pages/Sellers';
 import Affiliates from './pages/Affiliates';
 import Settings from './pages/Settings';
+// Seller pages
+import SellerDashboard from './pages/seller/SellerDashboard';
+import SellerProducts from './pages/seller/SellerProducts';
+import SellerOrders from './pages/seller/SellerOrders';
+import SellerEarnings from './pages/seller/SellerEarnings';
+import SellerInventory from './pages/seller/SellerInventory';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
@@ -53,12 +60,19 @@ function AppRoutes() {
         <Route path="categories" element={<Categories />} />
         <Route path="brands" element={<Brands />} />
         <Route path="promo-codes" element={<PromoCodes />} />
+        <Route path="sliders" element={<Sliders />} />
         <Route path="returns" element={<Returns />} />
         <Route path="tickets" element={<Tickets />} />
         <Route path="transactions" element={<Transactions />} />
         <Route path="sellers" element={<Sellers />} />
         <Route path="affiliates" element={<Affiliates />} />
         <Route path="settings" element={<Settings />} />
+        {/* Seller routes */}
+        <Route path="seller" element={<SellerDashboard />} />
+        <Route path="seller/products" element={<SellerProducts />} />
+        <Route path="seller/orders" element={<SellerOrders />} />
+        <Route path="seller/earnings" element={<SellerEarnings />} />
+        <Route path="seller/inventory" element={<SellerInventory />} />
       </Route>
     </Routes>
   );

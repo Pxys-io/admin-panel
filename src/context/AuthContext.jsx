@@ -55,8 +55,19 @@ export const AuthProvider = ({ children }) => {
     return user.permissions.includes('*') || user.permissions.includes(permission);
   };
 
+  const isSeller = () => {
+    if (!user) return false;
+    // Check if user has seller/merchant role or is associated with a store
+    return user.isSeller || user.storeId || user.adminRole === 'seller' || user.adminRole === 'merchant';
+  };
+
+  const isAdmin = () => {
+    if (!user) return false;
+    return !isSeller() || user.permissions?.includes('*');
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, hasPermission }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, hasPermission, isSeller, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

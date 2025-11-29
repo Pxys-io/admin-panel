@@ -39,29 +39,29 @@ export default function Payments() {
     {
       key: 'user',
       label: 'Customer',
-      render: (row) => row.userId ? `${row.userId.userFirstName} ${row.userId.userLastName}` : 'N/A',
+      render: (_, row) => row.userId ? `${row.userId.userFirstName} ${row.userId.userLastName}` : 'N/A',
     },
     {
       key: 'amount',
       label: 'Amount',
-      render: (row) => `$${row.amount?.toLocaleString() || 0}`,
+      render: (val) => `$${val?.toLocaleString() || 0}`,
     },
     {
       key: 'currency',
       label: 'Currency',
-      render: (row) => row.currency?.toUpperCase() || 'USD',
+      render: (val) => val?.toUpperCase() || 'USD',
     },
     {
       key: 'status',
       label: 'Status',
-      render: (row) => (
-        <span className={`badge badge-${row.status}`}>{row.status}</span>
+      render: (val) => (
+        <span className={`badge badge-${val}`}>{val}</span>
       ),
     },
     {
       key: 'createdAt',
       label: 'Date',
-      render: (row) => new Date(row.createdAt).toLocaleDateString(),
+      render: (val) => new Date(val).toLocaleDateString(),
     },
   ];
 
